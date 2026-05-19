@@ -1,6 +1,6 @@
 /* ─── Reset ──────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 100%; height: 100%; overflow: hidden; }
+html, body { width: 100%; height: 100%; overflow: hidden; overflow-x: hidden; }
 body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
 button { cursor: pointer; border: none; background: none; }
 
@@ -727,4 +727,262 @@ button { cursor: pointer; border: none; background: none; }
   height: 107.61px;
   pointer-events: none;
   z-index: 6;
+}
+
+/* ─── Hamburger (hidden on desktop) ─────────────────── */
+.ncard__hamburger { display: none; }
+.ncard__mobile-menu { display: none; }
+.ncard__cta--mobile-menu { display: none; }
+
+/* ─── Responsive: tablet + mobile (< 1024px) ────────── */
+@media (max-width: 1023px) {
+
+  html, body { overflow: auto; overflow-x: hidden; height: auto; }
+
+  /* Card shell becomes scrollable column */
+  .ncard {
+    width: 100%;
+    height: auto;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding-bottom: 64px;
+  }
+
+  /* Grid background stays behind */
+  .ncard__grid {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+  }
+
+  /* ── Navbar ───────────────────────────── */
+  .ncard__nav {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    padding: 14px 20px;
+    flex-direction: column;
+    gap: 0;
+    z-index: 100;
+    flex-shrink: 0;
+    background: rgba(6, 6, 6, 0.8);
+    backdrop-filter: blur(10px);
+  }
+
+  .ncard__nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .ncard__logo {
+    width: auto;
+    height: auto;
+    min-height: 44px;
+    padding: 4px 8px;
+    align-items: center;
+  }
+
+  .ncard__menu { display: none; }
+  .ncard__cta--desktop { display: none !important; }
+
+  /* Hamburger button */
+  .ncard__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+  }
+
+  .ncard__hamburger:hover { background: rgba(255, 255, 255, 0.12); }
+
+  .ncard__hamburger span {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: #ffffff;
+    border-radius: 1px;
+    transition: transform 0.28s ease, opacity 0.2s ease;
+  }
+
+  .ncard__hamburger--open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .ncard__hamburger--open span:nth-child(2) { opacity: 0; }
+  .ncard__hamburger--open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* Mobile dropdown */
+  .ncard__mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.32s ease, opacity 0.25s ease, padding 0.25s ease;
+  }
+
+  .ncard__mobile-menu--open {
+    max-height: 420px;
+    opacity: 1;
+    padding: 12px 0 16px;
+    border-top: 0.53px solid rgba(255, 255, 255, 0.08);
+    margin-top: 12px;
+  }
+
+  .ncard__mobile-menu .ncard__menu-link {
+    font-size: 13px;
+    padding: 10px 12px;
+    min-height: 44px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .ncard__cta--mobile-menu {
+    display: flex;
+    min-height: 44px;
+    padding: 10px 10px 10px 14px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    margin-top: 4px;
+  }
+
+  /* ── Hero heading ─────────────────────── */
+  .ncard__heading-wrap {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    padding: 28px 20px 0;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .ncard__hl-sub { width: 100%; align-items: center; }
+
+  .ncard__texts { width: 100%; align-items: center; }
+
+  .ncard__title {
+    font-size: 32px;
+    line-height: 1.2;
+    width: 100%;
+    height: auto;
+    min-height: 78px;
+    text-align: center;
+  }
+
+  .ncard__desc {
+    font-size: 11px;
+    line-height: 16px;
+    width: 100%;
+    text-align: center;
+    padding: 0 4px;
+  }
+
+  /* ── Feature pills ───────────────────── */
+  .ncard__features {
+    position: relative;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    margin-top: 8px;
+  }
+
+  .ncard__features { width: 100%; height: auto; }
+
+  .ncard__feature { position: relative !important; left: auto !important; width: auto !important; height: auto; padding: 8px 14px !important; min-height: 44px; border: 0.53px solid rgba(255,255,255,0.12) !important; border-radius: 4px; align-items: center !important; }
+  .ncard__feature-text { font-size: 12px; letter-spacing: 1px; }
+  .ncard__feature-icon svg { width: 14px; height: 14px; }
+  .ncard__feature--resolution { padding-left: 14px !important; padding-right: 14px !important; }
+  .ncard__feature--neural,
+  .ncard__feature--audio { border-left: 0.53px solid rgba(255,255,255,0.12) !important; }
+
+  /* ── Product group ───────────────────── */
+  .ncard__product-group {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 28px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: visible;
+  }
+
+  .ncard__product-bg {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+    max-height: 240px;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .ncard__product-float {
+    position: relative;
+    left: auto;
+    top: auto;
+    animation: cardFloat 3.8s ease-in-out infinite;
+    width: calc(100% - 40px);
+    max-width: 320px;
+    margin: 16px auto 0;
+    z-index: 6;
+  }
+
+  .ncard__product-card { width: 100%; }
+
+  /* Hide desktop decorative elements */
+  .ncard__connector-svg,
+  .ncard__sparkle-v9,
+  .ncard__vector10,
+  .ncard__sparkles,
+  .ncard__ellipse-dot { display: none; }
+
+  /* Clamp atmospheric lights */
+  .ncard__light-v2 { left: 0; width: 100%; }
+  .ncard__light-v3 { left: 0; width: 100%; }
+  .ncard__light-v4,
+  .ncard__light-v5 { display: none; }
+}
+
+/* ─── Tablet (640–1023px) ────────────────────────────── */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .ncard__title { font-size: 40px; min-height: 98px; }
+  .ncard__desc { font-size: 13px; line-height: 20px; }
+  .ncard__heading-wrap { padding: 32px 40px 0; }
+  .ncard__product-bg { max-height: 340px; }
+  .ncard__product-float { max-width: 380px; }
+}
+
+/* ─── Mobile small (< 640px) ─────────────────────────── */
+@media (max-width: 639px) {
+  .ncard__title { font-size: 26px; min-height: 64px; }
+  .ncard__heading-wrap { padding: 20px 16px 0; }
+
+  .ncard__features { flex-direction: column; align-items: stretch; padding: 0 20px; }
+  .ncard__feature { width: 100% !important; justify-content: flex-start; }
+
+  .ncard__product-float { width: calc(100% - 32px); }
 }

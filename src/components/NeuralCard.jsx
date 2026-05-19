@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { TypeAnimation } from 'react-type-animation'
 
 const MENU_LINKS = [
@@ -185,6 +185,7 @@ function Sparkles() {
 export default function NeuralCard({ active }) {
   const cardRef = useRef(null)
   const productCardRef = useRef(null)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   /* 3D tilt on product card */
   const handleTiltMove = (e) => {
@@ -250,7 +251,28 @@ card.querySelectorAll('.ncard__feature').forEach(f => f.classList.remove('visibl
               ))}
             </div>
           </div>
-          <button className="ncard__cta">
+          <button className="ncard__cta ncard__cta--desktop">
+            <span>View Products</span>
+            <span className="ncard__cta-icon"><DotMatrixLight /></span>
+          </button>
+          <button
+            className={`ncard__hamburger${menuOpen ? ' ncard__hamburger--open' : ''}`}
+            aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(o => !o)}
+          >
+            <span /><span /><span />
+          </button>
+        </div>
+        <div className={`ncard__mobile-menu${menuOpen ? ' ncard__mobile-menu--open' : ''}`} aria-hidden={!menuOpen}>
+          {MENU_LINKS.map((l) => (
+            <a key={l.label} href="#"
+              className={`ncard__menu-link${l.active ? ' ncard__menu-link--active' : ''}`}
+              onClick={() => setMenuOpen(false)}>
+              {l.label}
+            </a>
+          ))}
+          <button className="ncard__cta ncard__cta--mobile-menu" onClick={() => setMenuOpen(false)}>
             <span>View Products</span>
             <span className="ncard__cta-icon"><DotMatrixLight /></span>
           </button>
@@ -289,7 +311,7 @@ card.querySelectorAll('.ncard__feature').forEach(f => f.classList.remove('visibl
         </div>
 
         {/* Feature pills — individually animated */}
-        <div className="ncard__features" style={{ width: 492.12, position: 'relative', height: 23.21 }}>
+        <div className="ncard__features">
           <div className="ncard__feature ncard__feature--resolution anim-fade-up">
             <div className="ncard__feature-inner">
               <span className="ncard__feature-icon"><ResolutionIcon /></span>
