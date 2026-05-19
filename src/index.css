@@ -253,7 +253,7 @@ button { cursor: pointer; border: none; background: none; }
   display: flex;
   align-items: center;
   gap: 4.22px;
-  padding: 5.27px 6.33px;
+  padding: 5.27px 18.3px 5.27px 6.33px;
   width: 84.4px;
   height: 21.1px;
   border-radius: 2.11px;
@@ -418,7 +418,7 @@ button { cursor: pointer; border: none; background: none; }
   font-family: 'Fragment Mono', monospace;
   font-size: 7.38px;
   line-height: 11px;
-  letter-spacing: -0.02em;
+  letter-spacing: 1.5px;
   font-variant: all-small-caps;
   color: #ffffff;
   text-align: center;
@@ -453,6 +453,7 @@ button { cursor: pointer; border: none; background: none; }
   text-align: center;
   color: #ffffff;
   width: 474.73px;
+  height: 100px;
 }
 
 .ncard__desc {
@@ -526,7 +527,7 @@ button { cursor: pointer; border: none; background: none; }
   font-family: 'Fragment Mono', monospace;
   font-size: 7.38px;
   line-height: 11px;
-  letter-spacing: -0.02em;
+  letter-spacing: 1.5px;
   font-variant: all-small-caps;
   color: #ffffff;
   white-space: nowrap;
