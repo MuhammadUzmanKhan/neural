@@ -953,12 +953,34 @@ button { cursor: pointer; border: none; background: none; }
 
   .ncard__product-card { width: 100%; }
 
-  /* Hide desktop decorative elements */
+  /* Hide desktop-only decorative elements */
   .ncard__connector-svg,
-  .ncard__sparkle-v9,
-  .ncard__vector10,
-  .ncard__sparkles,
   .ncard__ellipse-dot { display: none; }
+
+  /* Sparkles — overlay over hero image */
+  .ncard__sparkles {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(264px, 80%);
+    height: auto;
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  .ncard__vector10 { display: none; }
+
+  /* Sparkle glow blob */
+  .ncard__sparkle-v9 {
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 60px;
+    z-index: 2;
+  }
 
   /* Clamp atmospheric lights */
   .ncard__light-v2 { left: 0; width: 100%; }
