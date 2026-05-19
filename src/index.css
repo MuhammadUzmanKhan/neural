@@ -1,0 +1,729 @@
+/* ─── Reset ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; }
+button { cursor: pointer; border: none; background: none; }
+
+/* ─── Fonts ──────────────────────────────────────── */
+/* Neue Montreal substitute → Inter  |  Fragment Mono → Fragment Mono (GFonts) */
+
+/* ─── App Shell ──────────────────────────────────── */
+.app {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+.slide--neural {
+  background: #000000;
+}
+
+/* ─── Card Scale Wrapper ─────────────────────────── */
+.card-scaler {
+  transform-origin: center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Star twinkle (Neural sparkles) ────────────── */
+@keyframes starTwinkle {
+  0%   { opacity: 0.15; transform: scale(0.7); }
+  100% { opacity: 0.95; transform: scale(1.3); }
+}
+
+/* ─── Product card float ─────────────────────────── */
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-7px); }
+}
+
+
+/* ─── Animation classes ──────────────────────────── */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.anim-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-fade-in {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.anim-fade-in.visible {
+  opacity: 1;
+}
+
+
+/* ─── Title word reveal ──────────────────────────── */
+.ncard__title-line {
+  display: block;
+}
+.ncard__word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.ncard__title-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(110%);
+  transition: opacity 0.5s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ncard__title-word.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Feature pill individual animation ──────────── */
+.ncard__feature.anim-fade-up {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s ease, transform 0.5s ease;
+}
+.ncard__feature.anim-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Sparkle glow blobs (Figma Vector 9, 7) ──────── */
+.ncard__sparkle-v9 {
+  position: absolute;
+  left: 200.81px;
+  top: 43.8px;
+  width: 182.24px;
+  height: 76.22px;
+  background: rgba(255, 255, 255, 0.5);
+  mix-blend-mode: plus-lighter;
+  filter: blur(79.1214px);
+  pointer-events: none;
+  z-index: 2;
+}
+.ncard__sparkle-v7 {
+  position: absolute;
+  left: 203.19px;
+  top: 44.6px;
+  width: 175.65px;
+  height: 75.43px;
+  background: rgba(255, 255, 255, 0.25);
+  mix-blend-mode: plus-lighter;
+  filter: blur(21.099px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ─── Connector line ──────────────────────────────── */
+.ncard__connector-svg {
+  position: absolute;
+  left: 328.8px;
+  top: 381px;
+  width: 188px;
+  height: 49.85px;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* ─── Product float wrapper ──────────────────────── */
+.ncard__product-float {
+  position: absolute;
+  left: 445.82px;
+  top: 22.44px;
+  animation: cardFloat 3.8s ease-in-out infinite;
+  z-index: 6;
+}
+
+/* ─── Neural Card ────────────────────────────────── */
+.ncard {
+  position: relative;
+  width: 876.62px;
+  height: 623.38px;
+  background: #060606;
+  border-radius: 0;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+/* Grid background */
+.ncard__grid {
+  position: absolute;
+  left: 44.31px;
+  top: 159.3px;
+  width: 670.51px;
+  height: 476.81px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Light effects */
+.ncard__light {
+  position: absolute;
+  left: -278.51px;
+  top: 244.22px;
+  width: 1118.78px;
+  height: 591.83px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Lights render BEHIND product-group (z-index 5) so person blocks them */
+.ncard__light-v2 {
+  position: absolute;
+  left: -278.51px;
+  top: 565.45px;
+  width: 1068.93px;
+  height: 214.68px;
+  background: #63A4FA;
+  mix-blend-mode: plus-lighter;
+  filter: blur(105.495px);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ncard__light-v3 {
+  position: absolute;
+  left: -101.8px;
+  top: 447.1px;
+  width: 941.81px;
+  height: 333.03px;
+  background: rgba(191, 222, 255, 0.55);
+  mix-blend-mode: plus-lighter;
+  filter: blur(42.1981px);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ncard__light-v4 {
+  position: absolute;
+  left: -278.51px;
+  top: 565.45px;
+  width: 1052.84px;
+  height: 126.07px;
+  background: rgba(250, 154, 99, 0.1);
+  mix-blend-mode: plus-lighter;
+  filter: blur(158.243px);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.ncard__light-v5 {
+  position: absolute;
+  left: -92.44px;
+  top: 462.6px;
+  width: 602.91px;
+  height: 258.73px;
+  background: rgba(99, 192, 250, 0.22);
+  mix-blend-mode: plus-lighter;
+  filter: blur(10.5495px);
+  pointer-events: none;
+  z-index: 4;
+}
+
+
+/* Navbar */
+.ncard__nav {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 759.57px;
+  padding: 16.88px 42.2px;
+  display: flex;
+  flex-direction: column;
+  gap: 5.27px;
+  z-index: 10;
+}
+
+.ncard__nav-inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ncard__logo {
+  display: flex;
+  align-items: center;
+  gap: 4.22px;
+  padding: 5.27px 6.33px;
+  width: 84.4px;
+  height: 21.1px;
+  border-radius: 2.11px;
+}
+
+.ncard__logo-img {
+  width: 12.82px;
+  height: 12.66px;
+  object-fit: contain;
+}
+
+.ncard__logo-text {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 10.55px;
+  font-weight: 400;
+  line-height: 10.55px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.ncard__menu {
+  display: flex;
+  padding: 3.16px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 2.11px;
+  gap: 0;
+}
+
+
+.ncard__menu-links {
+  display: flex;
+  align-items: center;
+}
+
+.ncard__menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.16px 8.44px;
+  border-radius: 1.05px;
+  font-family: 'Inter', sans-serif;
+  font-size: 7.38px;
+  font-weight: 400;
+  line-height: 9.49px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+}
+
+.ncard__menu-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1.05px;
+  background: linear-gradient(135deg, rgba(99,164,250,0.15) 0%, rgba(99,164,250,0.04) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ncard__menu-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8.44px;
+  width: calc(100% - 16.88px);
+  height: 1.2px;
+  background: linear-gradient(90deg, #63A4FA 0%, rgba(99,164,250,0.6) 70%, rgba(99,164,250,0) 100%);
+  box-shadow: 0 0 6px rgba(99,164,250,0.8), 0 0 12px rgba(99,164,250,0.4);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.ncard__menu-link:hover::before,
+.ncard__menu-link--active::before {
+  opacity: 1;
+}
+
+.ncard__menu-link:hover::after,
+.ncard__menu-link--active::after {
+  transform: scaleX(1);
+}
+
+.ncard__menu-link--active {
+  background: transparent;
+  color: #63A4FA;
+}
+
+.ncard__menu-link:hover {
+  background: transparent;
+  color: #63A4FA;
+}
+
+.ncard__cta {
+  display: flex;
+  align-items: center;
+  gap: 5.27px;
+  padding: 2.11px 2.11px 2.11px 6.33px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 2.11px;
+  font-family: 'Inter', sans-serif;
+  font-size: 7.38px;
+  font-weight: 500;
+  line-height: 9.49px;
+  color: #ffffff;
+  transition: background 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.ncard__cta:hover {
+  background: rgba(255,255,255,0.16);
+  transform: translateY(-1px);
+}
+
+.ncard__cta-icon {
+  width: 16.88px;
+  height: 16.88px;
+  border-radius: 1.05px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Main heading */
+.ncard__heading-wrap {
+  position: absolute;
+  left: 173.75px;
+  top: 81px;
+  width: 527.48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18.99px;
+  z-index: 5;
+}
+
+.ncard__hl-sub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16.88px;
+  width: 474.73px;
+}
+
+.ncard__tag {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4.22px 8.44px;
+  gap: 5.27px;
+  background: rgba(255,255,255,0.04);
+  width: fit-content;
+}
+
+.ncard__tag-text {
+  font-family: 'Fragment Mono', monospace;
+  font-size: 7.38px;
+  line-height: 11px;
+  letter-spacing: -0.02em;
+  font-variant: all-small-caps;
+  color: #ffffff;
+  text-align: center;
+}
+
+.ncard__corner {
+  position: absolute;
+  width: 3.69px;
+  height: 3.69px;
+  border-color: #ffffff;
+  border-style: solid;
+}
+.ncard__corner--tl { top: 0; left: 0; border-width: 0.53px 0 0 0.53px; }
+.ncard__corner--tr { top: 0; right: 0; border-width: 0.53px 0 0 0.53px; transform: scaleX(-1); }
+.ncard__corner--bl { bottom: 0; left: 0; border-width: 0.53px 0 0 0.53px; transform: scaleY(-1); }
+.ncard__corner--br { bottom: 0; right: 0; border-width: 0.53px 0 0 0.53px; transform: scale(-1); }
+
+.ncard__texts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12.66px;
+  width: 474.73px;
+}
+
+.ncard__title {
+  font-family: 'Inter', sans-serif;
+  font-size: 37.98px;
+  font-weight: 400;
+  line-height: 38px;
+  letter-spacing: -0.03em;
+  text-align: center;
+  color: #ffffff;
+  width: 474.73px;
+}
+
+.ncard__desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 8.44px;
+  font-weight: 400;
+  line-height: 11.6px;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+  width: 474.73px;
+}
+
+/* Feature pills */
+.ncard__features {
+  position: relative;
+  width: 492.12px;
+  height: 23.21px;
+  display: flex;
+  align-items: center;
+}
+
+.ncard__feature {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6.33px 0;
+  height: 23.66px;
+}
+
+.ncard__feature--resolution {
+  left: 0;
+  width: 152.2px;
+  padding-left: 21.1px;
+  padding-right: 21.1px;
+  align-items: flex-start;
+}
+
+.ncard__feature--neural {
+  left: 152.25px;
+  width: 187.61px;
+  padding-left: 12.66px;
+  padding-right: 12.66px;
+  align-items: center;
+  border-left: 0.53px solid rgba(255,255,255,0.06);
+}
+
+.ncard__feature--audio {
+  left: 339.87px;
+  width: 152.26px;
+  padding-left: 12.66px;
+  padding-right: 12.66px;
+  align-items: center;
+  border-left: 0.53px solid rgba(255,255,255,0.06);
+}
+
+.ncard__feature-inner {
+  display: flex;
+  align-items: center;
+  gap: 5.27px;
+}
+
+.ncard__feature-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ncard__feature-text {
+  font-family: 'Fragment Mono', monospace;
+  font-size: 7.38px;
+  line-height: 11px;
+  letter-spacing: -0.02em;
+  font-variant: all-small-caps;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+/* Product card */
+.ncard__product-group {
+  position: absolute;
+  left: 68.78px;
+  top: 282.44px;
+  width: 611.45px;
+  height: 301.98px;
+  z-index: 5;
+  overflow: visible;
+}
+
+.ncard__product-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 421.92px;
+  height: 301.98px;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.ncard__product-card {
+  position: relative;
+  width: 165.63px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12.66px;
+  padding: 12.66px 16.88px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.07) 100%);
+  border: 0.53px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.18s ease-out, box-shadow 0.2s ease;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Shine sweep on hover */
+.ncard__product-card::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -80%;
+  width: 55%;
+  height: 220%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.65s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+.ncard__product-card:hover::after {
+  left: 160%;
+}
+
+.ncard__product-img-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5.27px;
+  padding: 0 12.66px;
+  width: 100%;
+}
+
+.ncard__product-img {
+  width: 107.61px;
+  height: 61.62px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.ncard__product-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12.66px;
+}
+
+.ncard__product-title-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.ncard__product-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 11.6px;
+  font-weight: 500;
+  line-height: 13.71px;
+  color: #ffffff;
+}
+
+.ncard__product-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.49px;
+  font-weight: 400;
+  line-height: 21.1px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.ncard__preorder {
+  display: flex;
+  align-items: center;
+  gap: 5.27px;
+  padding: 2.11px 2.11px 2.11px 6.33px;
+  background: #ffffff;
+  border-radius: 3.16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 7.38px;
+  font-weight: 500;
+  line-height: 9.49px;
+  color: #171717;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.ncard__preorder:hover {
+  background: rgba(255,255,255,0.88);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(255,255,255,0.15);
+}
+
+.ncard__preorder:active {
+  transform: scale(0.98) translateY(0);
+}
+
+.ncard__preorder-icon {
+  width: 16.88px;
+  height: 16.88px;
+  background: #171717;
+  border-radius: 2.11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ncard__product-corner {
+  position: absolute;
+  width: 10.55px;
+  height: 10.55px;
+  border-color: #ffffff;
+  border-style: solid;
+}
+.ncard__product-corner--tl { top: 0; left: 0; border-width: 1px 0 0 1px; }
+.ncard__product-corner--tr { top: 0; right: 0; border-width: 1px 0 0 1px; transform: scaleX(-1); }
+.ncard__product-corner--bl { bottom: 0; left: 0; border-width: 1px 0 0 1px; transform: scaleY(-1); }
+.ncard__product-corner--br { bottom: 0; right: 0; border-width: 1px 0 0 1px; transform: scale(-1); }
+
+/* Ellipse dot near product card */
+.ncard__ellipse-dot {
+  position: absolute;
+  left: 442.71px;
+  top: 143px;
+  width: 8.44px;
+  height: 8.44px;
+  background: #ffffff;
+  border: 1.41px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  z-index: 6;
+  animation: dotPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+  50% { box-shadow: 0 0 0 4px rgba(255,255,255,0); }
+}
+
+
+/* Lens face blue-white fill — matches Figma lit-screen appearance */
+
+/* Vector 10 — blue translucent hex between hand and face */
+.ncard__vector10 {
+  position: absolute;
+  left: 183.14px;
+  top: 57.25px;
+  width: 230px;
+  height: 52.22px;
+  mix-blend-mode: plus-lighter;
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* Sparkles overlay — positioned relative to ncard__product-group */
+.ncard__sparkles {
+  position: absolute;
+  left: 183.14px;
+  top: 43.81px;
+  width: 264px;
+  height: 107.61px;
+  pointer-events: none;
+  z-index: 6;
+}
